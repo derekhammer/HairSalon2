@@ -1,6 +1,6 @@
 using System;
 using MySql.Data.MySqlClient;
-using ToDoList;
+using Salon;
 
 namespace Salon.Models
 {

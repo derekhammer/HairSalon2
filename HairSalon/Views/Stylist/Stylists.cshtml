@@ -1,6 +1,15 @@
+<ul>
 @foreach (var Stylist in Model)
   {
-  <h4>Stylist.GetAll()<h4>
+  <li><p>Name: @Stylist.GetName()</p></li>
+  <li><p>Details: @Stylist.GetDetail()</p></li>
+  <br>
   }
-
-<a href="/stylist/new">Add Stylist</a>
+</ul>
+@if(Model != null)
+{
+  <p>Model is connecting to view</p>
+}
+<button type="submit">Submit</button>
+<p><a href="/stylist/add">Add Stylist</a></p>
+<p><a href="/">Return to main page</a></p>

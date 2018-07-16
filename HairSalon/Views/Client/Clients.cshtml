@@ -1,0 +1,14 @@
+<ul>
+@foreach (var Client in Model)
+  {
+  <li><p>Name: @Client.GetName()</p></li>
+  <li><p>Details: @Client.GetId()</p></li>
+  <br>
+  }
+</ul>
+@if(Model != null)
+{
+  <p>Model is connecting to view</p>
+}
+<p><a href="/client/add">Add Client</a></p>
+<p><a href="/">Return to main page</a></p>

@@ -17,14 +17,21 @@ namespace Salon.Models
         _id = Id;
         _details = Details;
       }
-
+      public string GetName()
+      {
+        return _name;
+      }
+      public string GetDetail()
+      {
+        return _details;
+      }
       public void Save()
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO categories (name, details) VALUES (@name, @details);";
+            cmd.CommandText = @"INSERT INTO stylists (name, details) VALUES (@name, @details);";
 
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
@@ -34,7 +41,7 @@ namespace Salon.Models
             MySqlParameter details = new MySqlParameter();
             details.ParameterName = "@details";
             details.Value = this._details;
-            cmd.Parameters.Add(name);
+            cmd.Parameters.Add(details);
 
             cmd.ExecuteNonQuery();
             _id = (int) cmd.LastInsertedId;
@@ -55,9 +62,9 @@ namespace Salon.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
             {
-              int StylistId = rdr.GetInt32(2);
               string StylistName = rdr.GetString(0);
               string StylistDetails = rdr.GetString(1);
+              int StylistId = rdr.GetInt32(2);
               Stylist newStylist = new Stylist(StylistName, StylistDetails, StylistId);
               allStylists.Add(newStylist);
             }
@@ -68,5 +75,21 @@ namespace Salon.Models
             }
             return allStylists;
         }
+        public static void DeleteAll()
+       {
+           MySqlConnection conn = DB.Connection();
+           conn.Open();
+
+           var cmd = conn.CreateCommand() as MySqlCommand;
+           cmd.CommandText = @"DELETE FROM stylists;";
+
+           cmd.ExecuteNonQuery();
+
+           conn.Close();
+           if (conn != null)
+           {
+               conn.Dispose();
+           }
+      }
       }
     }

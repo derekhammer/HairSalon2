@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 16, 2018 at 05:57 AM
+-- Generation Time: Jul 26, 2018 at 04:40 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -29,17 +29,20 @@ USE `derek_hammer`;
 --
 
 CREATE TABLE `clients` (
-  `name` varchar(255) DEFAULT NULL,
-  `stylist_id` int(11) DEFAULT NULL,
-  `id` int(11) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `stylist_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `clients`
 --
 
-INSERT INTO `clients` (`name`, `stylist_id`, `id`) VALUES
-('Dawg', 6, NULL);
+INSERT INTO `clients` (`id`, `name`, `stylist_id`) VALUES
+(1, 'Fred', 10),
+(2, 'vcbdgd', 10),
+(3, 'Timmmoe', 9),
+(4, 'Timmmoe', 10);
 
 -- --------------------------------------------------------
 
@@ -48,8 +51,8 @@ INSERT INTO `clients` (`name`, `stylist_id`, `id`) VALUES
 --
 
 CREATE TABLE `stylists` (
-  `name` varchar(255) DEFAULT NULL,
-  `details` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `details` varchar(255) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -65,11 +68,18 @@ INSERT INTO `stylists` (`name`, `details`, `id`) VALUES
 ('doggy', 'DOGGY', 6),
 ('doggy', 'DOGGY', 7),
 ('doggy', 'DOGGY', 8),
-('doggy', 'DOGGY', 9);
+('doggy', 'DOGGY', 9),
+('John', 'Cuts hair.', 10);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `stylists`
@@ -82,10 +92,15 @@ ALTER TABLE `stylists`
 --
 
 --
+-- AUTO_INCREMENT for table `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

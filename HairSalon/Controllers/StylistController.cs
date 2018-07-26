@@ -29,7 +29,7 @@ namespace Salon.Controllers
           return View("Stylists", allStylists);
 
         }
-        [HttpPost("/stylist")]
+        [HttpPost("/stylist/delete")]
         public ActionResult DeleteAll()
         {
           Stylist.DeleteAll();

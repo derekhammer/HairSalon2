@@ -6,8 +6,8 @@ namespace Salon.Models
 {
     public class Client
     {
-      private string _name;
       private int _id;
+      private string _name;
       private int _stylistId;
 
       public Client (string Name, int StylistId, int Id = 0)
@@ -35,12 +35,12 @@ namespace Salon.Models
 
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
-            name.Value = this._name;
+            name.Value = _name;
             cmd.Parameters.Add(name);
 
             MySqlParameter stylist_id = new MySqlParameter();
             stylist_id.ParameterName = "@stylist_id";
-            stylist_id.Value = this._stylistId;
+            stylist_id.Value = _stylistId;
             cmd.Parameters.Add(stylist_id);
 
             cmd.ExecuteNonQuery();
@@ -62,9 +62,9 @@ namespace Salon.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
             {
-              string ClientName = rdr.GetString(0);
-              int StylistId = rdr.GetInt32(1);
-              int ClientId = rdr.GetInt32(2);
+              string ClientName = rdr.GetString(1);
+              int StylistId = rdr.GetInt32(2);
+              int ClientId = rdr.GetInt32(0);
               Client newClient = new Client(ClientName, StylistId, ClientId);
               allClients.Add(newClient);
             }

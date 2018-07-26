@@ -25,6 +25,10 @@ namespace Salon.Models
       {
         return _details;
       }
+      public int GetId()
+      {
+        return _id;
+      }
       public void Save()
         {
             MySqlConnection conn = DB.Connection();

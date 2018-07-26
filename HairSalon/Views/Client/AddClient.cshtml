@@ -1,10 +1,18 @@
+@using Salon.Models
+
 <h3>Add a new Client:</h3>
 <form action="/client" method="post">
   <label for="new-client">Clients Name:</label>
   <input id="new-client" name="new-client" type="text">
-  <label for="new-id">Clients ID:</label>
-  <input id="new-id" name="new-id" type="text">
-  <button type="submit">Submit</button>
+  <label for="stylist-Id">Stylist:</label>
+  <!-- <input id="stylist-Id" name="stylist-Id" type="number"> -->
+  <select id="stylist-Id" name="stylist-Id">
+    @foreach(var stylist in Stylist.GetAll())
+    {
+      <option value="@stylist.GetId()">@stylist.GetName()</option>
+    }
+  </select>
+  <button class="btn btn-danger" type="submit">Submit</button>
 </form>
 <p><a href='/client'>View our list of clients</a></p>
 <p><a href="/">Return to main page</a></p>

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Salon.Models;
+using System;
 
 namespace Salon.Controllers
 {
@@ -21,14 +22,9 @@ namespace Salon.Controllers
         [HttpPost("/client")]
         public ActionResult AddNewClient()
         {
-          string newName = Request.Form["new-client"];
-          int newId = 6;
-          //Request.Form["new-id"];
-          Client newClient = new Client(newName, newId);
+          Client newClient = new Client(Request.Form["new-client"],  int.Parse(Request.Form["stylist-Id"]));
           newClient.Save();
-          List<Client> allClients = Client.GetAll();
-          return View("Clients", allClients);
-
+          return RedirectToAction ("Clients");
         }
 
       }

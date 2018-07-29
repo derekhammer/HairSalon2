@@ -79,6 +79,39 @@ namespace Salon.Models
             }
             return allStylists;
         }
+        public static Stylist Find(int id)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM stylists WHERE id = (@searchId);";
+
+          MySqlParameter searchId = new MySqlParameter();
+          searchId.ParameterName = "@searchId";
+          searchId.Value = id;
+          cmd.Parameters.Add(searchId);
+
+          var rdr = cmd.ExecuteReader() as MySqlDataReader;
+          int Id =0;
+          string Name = "";
+          string Details = "";
+
+          while(rdr.Read())
+          {
+            Name = rdr.GetString(0);
+            Details = rdr.GetString(1);
+            Id = rdr.GetInt32(2);
+          }
+          Stylist newStylist = new Stylist(Name, Details, Id);
+          conn.Close();
+          if (conn != null)
+          {
+            conn.Dispose();
+          }
+          return newStylist;
+          }
+
+
         public static void DeleteAll()
        {
            MySqlConnection conn = DB.Connection();

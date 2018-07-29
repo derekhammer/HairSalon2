@@ -35,5 +35,16 @@ namespace Salon.Controllers
           Stylist.DeleteAll();
           return View();
         }
+        [HttpGet("/stylist/{id}")]
+        public ActionResult StylistList(int id)
+        {
+          Dictionary<string, object> model = new Dictionary<string, object>();
+          Stylist selectedStylist = Stylist.Find(id);
+          List<Client> selectedClients = Client.GetClientId(id);
+          List<Client> allClients = Client.GetAll();
+          model.Add("selectedClients", selectedClients);
+          model.Add("allClients", allClients);
+          return View(model);
+        }
       }
     }

@@ -75,5 +75,30 @@ namespace Salon.Models
             }
             return allClients;
         }
+        public static List<Client> GetClientId(int id)
+        {
+          List<Client> allClients = new List<Client> {};
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM clients WHERE stylist_id = @stylist_id;";
+          cmd.Parameters.Add(new MySqlParameter("@stylist_id", id));
+          var rdr = cmd.ExecuteReader() as MySqlDataReader;
+          while(rdr.Read())
+          {
+            string ClientName = rdr.GetString(1);
+            int StylistId = rdr.GetInt32(2);
+            int ClientId = rdr.GetInt32(0);
+            Client newClient = new Client(ClientName, StylistId, ClientId);
+            allClients.Add(newClient);
+          }
+          conn.Close();
+          if (conn != null)
+          {
+              conn.Dispose();
+          }
+          return allClients;
+
+        }
       }
     }

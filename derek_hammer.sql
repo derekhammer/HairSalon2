@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 26, 2018 at 04:40 AM
+-- Generation Time: Jul 30, 2018 at 04:58 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -39,10 +39,8 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `name`, `stylist_id`) VALUES
-(1, 'Fred', 10),
-(2, 'vcbdgd', 10),
-(3, 'Timmmoe', 9),
-(4, 'Timmmoe', 10);
+(5, 'Bill', 1),
+(6, 'Brandon', 1);
 
 -- --------------------------------------------------------
 
@@ -61,15 +59,7 @@ CREATE TABLE `stylists` (
 --
 
 INSERT INTO `stylists` (`name`, `details`, `id`) VALUES
-('pee', 'pee', 2),
-('pee', 'pee', 3),
-('doggo', 'doggo2', 4),
-('doggo', 'doggo2', 5),
-('doggy', 'DOGGY', 6),
-('doggy', 'DOGGY', 7),
-('doggy', 'DOGGY', 8),
-('doggy', 'DOGGY', 9),
-('John', 'Cuts hair.', 10);
+('Derek', 'Cuts hair.', 1);
 
 --
 -- Indexes for dumped tables
@@ -95,12 +85,12 @@ ALTER TABLE `stylists`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

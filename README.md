@@ -1,18 +1,35 @@
-# Stylists
-|ID|Name|Details|
-|--|----|-------|
-|1|Ted|Can cut hair|
-|2|Al|Does good work|
-|3|Frank|Has hair degree|
-|4|Joe|Talks a lot|
+# _Hair Salon_
 
-# Clients
-|ID|Name|Stylist_ID|
-|--|----|----------|
-|1|Allan|3|
-|2|Kim|2|
-|3|Rob|1|
-|4|Eugene|2|
-|5|Hellen|1|
-|6|Thomas|4|
-|3|Kyle|
+#### _A website that allows clients and stylists to add in new stylists, clients, and set clients to a stylist._
+
+#### By _**Derek Hammer**_
+
+## Description
+
+_This website helps organize a hair salon by stylists, their description, clients, and who is styling them._
+
+## Specs
+
+_Allows the user to input a stylist with a description._
+
+_Allows the user to input a client with a specific stylist._
+
+_Allows the user to display all stylists._
+
+_Allows the user to display all clients._
+
+
+## Known Bugs
+
+_No known bugs._
+
+## Support and contact details
+
+_Contact Derek Hammer at derekhammer@hotmail.com_
+
+
+### License
+
+*No license required*
+
+Copyright (c) 2018 **_Derek Hammer_**

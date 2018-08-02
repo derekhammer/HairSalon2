@@ -1,0 +1,15 @@
+<ul>
+@foreach (var Speciality in Model)
+{
+<li><p>Speciality: @Speciality.GetDetail()</p></li>
+
+<li><p>Speciality ID: @Speciality.GetId()</p></li>
+<br>
+}
+</ul>
+@if(Model != null)
+{
+  <p>Model is connecting to view</p>
+}
+<p><a href="/speciality/add">Add Speciality</a></p>
+<p><a href="/">Return to main page</a></p>

@@ -79,7 +79,7 @@ namespace Salon.Models
             }
             return allStylists;
         }
-
+        
 
         public static Stylist Find(int id)
         {

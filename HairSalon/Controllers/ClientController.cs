@@ -26,6 +26,18 @@ namespace Salon.Controllers
           newClient.Save();
           return RedirectToAction ("Clients");
         }
-
+        [HttpGet ("/client/{id}/editclient")]
+        public ActionResult EditClient(int Id)
+        {
+          Client thisClient = Client.FindClient(Id);
+          return View(thisClient);
+        }
+        [HttpPost ("/client/{id}/editclient")]
+        public ActionResult Edit(int Id)
+        {
+          Client thisClient = Client.FindClient(Id);
+          thisClient.EditClient(Request.Form["editClient"]);
+          return RedirectToAction("Clients");
+        }
       }
     }

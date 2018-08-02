@@ -79,6 +79,8 @@ namespace Salon.Models
             }
             return allStylists;
         }
+
+
         public static Stylist Find(int id)
         {
           MySqlConnection conn = DB.Connection();
@@ -111,6 +113,40 @@ namespace Salon.Models
           return newStylist;
           }
 
+          public void EditStylist(string editName)
+          {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE stylists SET name = @editName WHERE id = @searchId;";
+
+            cmd.Parameters.Add(new MySqlParameter("@searchId", _id));
+            cmd.Parameters.Add(new MySqlParameter("@editName", editName));
+
+            cmd.ExecuteNonQuery();
+            _name = editName;
+
+            conn.Close();
+            if (conn != null)
+            {
+              conn.Dispose();
+            }
+          }
+
+          public void Delete()
+          {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"DELETE FROM stylists WHERE id = @thisId;";
+          cmd.Parameters.Add(new MySqlParameter("@thisId", _id));
+          cmd.ExecuteNonQuery();
+          conn.Close();
+          if (conn != null)
+          {
+            conn.Dispose();
+          }
+         }
 
         public static void DeleteAll()
        {

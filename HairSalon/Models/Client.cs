@@ -22,9 +22,12 @@ namespace Salon.Models
       }
       public int GetId()
       {
+        return _id;
+      }
+      public int GetStylistId()
+      {
         return _stylistId;
       }
-
       public void Save()
         {
             MySqlConnection conn = DB.Connection();
@@ -100,5 +103,82 @@ namespace Salon.Models
           return allClients;
 
         }
+        public static Client FindClient(int id)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM clients WHERE Id = (@searchId);";
+          MySqlParameter searchId = new MySqlParameter();
+          searchId.ParameterName = "@searchId";
+          searchId.Value = id;
+          cmd.Parameters.Add(searchId);
+          var rdr = cmd.ExecuteReader() as MySqlDataReader;
+          int Id = 0;
+          string Name = "";
+          int StylistId = 0;
+          while(rdr.Read())
+          {
+            Id = rdr.GetInt32(0);
+            Name = rdr.GetString(1);
+            StylistId = rdr.GetInt32(2);
+          }
+          Client newClient = new Client(Name, StylistId, Id);
+          conn.Close();
+          if (conn != null)
+          {
+            conn.Dispose();
+          }
+          return newClient;
+        }
+
+
+
+        public void EditClient(string editName)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"UPDATE clients SET name = @editName WHERE id = @searchId;";
+
+          cmd.Parameters.Add(new MySqlParameter("@searchId", _id));
+          cmd.Parameters.Add(new MySqlParameter("@editName", editName));
+
+          cmd.ExecuteNonQuery();
+          _name = editName;
+
+          conn.Close();
+          if (conn != null)
+          {
+            conn.Dispose();
+          }
+        }
+        public void Delete()
+        {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"DELETE FROM clients WHERE id = @thisId;";
+        cmd.Parameters.Add(new MySqlParameter("@thisId", _id));
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
+       }
+       public static void DeleteAll()
+       {
+         MySqlConnection conn = DB.Connection();
+         conn.Open();
+         var cmd = conn.CreateCommand() as MySqlCommand;
+         cmd.CommandText = @"DELETE FROM clients;";
+         cmd.ExecuteNonQuery();
+         conn.Close();
+         if (conn != null)
+         {
+           conn.Dispose();
+         }
+       }
       }
     }

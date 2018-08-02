@@ -46,5 +46,18 @@ namespace Salon.Controllers
           model.Add("allClients", allClients);
           return View(model);
         }
+        [HttpGet ("/stylist/{id}/editstylist")]
+        public ActionResult EditStylist(int Id)
+        {
+          Stylist thisStylist = Stylist.Find(Id);
+          return View(thisStylist);
+        }
+        [HttpPost ("/stylist/{id}/editstylist")]
+        public ActionResult Edit(int Id)
+        {
+          Stylist thisStylist = Stylist.Find(Id);
+          thisStylist.EditStylist(Request.Form["editStylist"]);
+          return RedirectToAction("Stylists");
+        }
       }
     }

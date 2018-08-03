@@ -8,7 +8,7 @@ namespace Salon.Controllers
     public class SpecialityController : Controller
     {
       [HttpGet("/speciality")]
-      public ActionResult Speciality()
+      public ActionResult Specialities()
       {
         return View(Speciality.GetAll());
       }
@@ -22,7 +22,7 @@ namespace Salon.Controllers
       {
         Speciality newSpeciality = new Speciality(Request.Form["new-speciality"]);
         newSpeciality.Save();
-        return RedirectToAction ("Speciality");
+        return RedirectToAction ("Specialities");
       }
     }
   }

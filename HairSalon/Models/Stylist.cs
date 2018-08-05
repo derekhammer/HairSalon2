@@ -54,7 +54,6 @@ namespace Salon.Models
             {
                 conn.Dispose();
             }
-
         }
         public static List<Stylist> GetAll()
         {
@@ -79,8 +78,6 @@ namespace Salon.Models
             }
             return allStylists;
         }
-        
-
         public static Stylist Find(int id)
         {
           MySqlConnection conn = DB.Connection();

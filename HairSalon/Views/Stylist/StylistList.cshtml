@@ -5,5 +5,15 @@
     <li>@client.GetName()</li>
   }
 </ul>
+<br>
+<br>
+<h2>Specialities:</h2>
+<ul>
+  @foreach(var speciality in @Model["getSpeciality"])
+  {
+    <li>@speciality.GetDetail()</li>
+  }
+</ul>
+
 
 <a href="/">Back to Home</a>

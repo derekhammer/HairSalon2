@@ -42,7 +42,7 @@ namespace Salon.Controllers
           Stylist selectedStylist = Stylist.Find(id);
           List<Client> selectedClients = Client.GetClientId(id);
           List<Client> allClients = Client.GetAll();
-          List<Speciality> getSpeciality = Speciality.GetAll();
+          List<Speciality> getSpeciality = Speciality.Find(id);
           model.Add("getSpeciality", getSpeciality);
           model.Add("selectedClients", selectedClients);
           model.Add("allClients", allClients);

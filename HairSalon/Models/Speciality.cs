@@ -68,5 +68,27 @@ namespace Salon.Models
           }
           return allSpecialities;
       }
+      public static List<Speciality> Find(int StylistId)
+      {
+        List<Speciality> allSpecialities = new List<Speciality> {};
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT base_spec.id, details FROM specialities base_spec JOIN specialities_stylists lookup ON base_spec.id = lookup.specialities_id WHERE lookup.stylists_id = " + StylistId;
+        var rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+          string SpecialityDetails = rdr.GetString(1);
+          int SpecialityId = rdr.GetInt32(0);
+          Speciality newSpeciality = new Speciality(SpecialityDetails, SpecialityId);
+          allSpecialities.Add(newSpeciality);
+        }
+        conn.Close();
+        if (conn != null)
+        {
+            conn.Dispose();
+        }
+        return allSpecialities;
+      }
     }
   }

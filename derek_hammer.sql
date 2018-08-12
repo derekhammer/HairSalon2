@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 30, 2018 at 04:58 AM
+-- Generation Time: Aug 13, 2018 at 12:43 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -39,8 +39,48 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `name`, `stylist_id`) VALUES
-(5, 'Bill', 1),
+(5, 'Frank', 1),
 (6, 'Brandon', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `specialities`
+--
+
+CREATE TABLE `specialities` (
+  `id` int(11) NOT NULL,
+  `details` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `specialities`
+--
+
+INSERT INTO `specialities` (`id`, `details`) VALUES
+(1, 'Good Hair'),
+(2, 'Bad Hair'),
+(3, 'Bad Hair'),
+(4, 'Bad Hair');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `specialities_stylists`
+--
+
+CREATE TABLE `specialities_stylists` (
+  `id` int(11) NOT NULL,
+  `specialities_id` int(11) NOT NULL,
+  `stylists_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `specialities_stylists`
+--
+
+INSERT INTO `specialities_stylists` (`id`, `specialities_id`, `stylists_id`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -59,7 +99,7 @@ CREATE TABLE `stylists` (
 --
 
 INSERT INTO `stylists` (`name`, `details`, `id`) VALUES
-('Derek', 'Cuts hair.', 1);
+('Derek the Crusher', 'Cuts hair.', 1);
 
 --
 -- Indexes for dumped tables
@@ -69,6 +109,18 @@ INSERT INTO `stylists` (`name`, `details`, `id`) VALUES
 -- Indexes for table `clients`
 --
 ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `specialities`
+--
+ALTER TABLE `specialities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `specialities_stylists`
+--
+ALTER TABLE `specialities_stylists`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -87,10 +139,20 @@ ALTER TABLE `stylists`
 ALTER TABLE `clients`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
+-- AUTO_INCREMENT for table `specialities`
+--
+ALTER TABLE `specialities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `specialities_stylists`
+--
+ALTER TABLE `specialities_stylists`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
